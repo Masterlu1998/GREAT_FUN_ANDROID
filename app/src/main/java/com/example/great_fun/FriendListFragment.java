@@ -17,6 +17,8 @@ import org.w3c.dom.Text;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class FriendListFragment extends Fragment {
     private RecyclerView mCrimeRecyclerView;
     private FriendAdapter mAdapter;
@@ -50,11 +52,11 @@ public class FriendListFragment extends Fragment {
         private TextView mFriendName;
         private TextView mFriendDate;
         private TextView mFriendMessage;
-        private ImageView mFriendHead;
+        private CircleImageView mFriendHead;
         public FriendHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_item_friend, parent, false));
             mFriendName = (TextView) itemView.findViewById(R.id.friendName);
-            mFriendHead = (ImageView) itemView.findViewById(R.id.friendHead);
+            mFriendHead = (CircleImageView) itemView.findViewById(R.id.friendHead);
             mFriendMessage = (TextView) itemView.findViewById(R.id.friendMessage);
             mFriendDate = (TextView) itemView.findViewById(R.id.friendDate);
         }
