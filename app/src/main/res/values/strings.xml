@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">GREAT_FUN</string>
+    <string name="app_chinese_name">聚好玩</string>
+    <string name="title_friend_activity">好友</string>
+    <string name="title_main_activity">主页</string>
+    <string name="title_discover_activity">发现</string>
+    <string name="title_person_activity">个人</string>
+    <string name="homepage_title_A">知名博主</string>
+    <string name="homepage_title_B">热门活动</string>
+    <string name="button_join_activity">立即加入</string>
+    <string name="text_more_detail">点击查看更多</string>
+    <string name="title_post_activity">活动名称</string>
+    <string name="date_post_activity">活动时间</string>
+    <string name="content_post_activity">活动内容</string>
+    <string name="button_post_activity" >修改活动</string>
+
+</resources>

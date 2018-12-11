@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="90dp"
+                android:layout_marginRight="30dp"
+                android:text="Node后端工程师，很强的那种。"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="18sp"
+                android:translationZ="999dp" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="50dp"
+                android:text="Master Lu"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="36sp"
+                android:translationZ="999dp" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circleImageView"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="140dp"
+                android:elevation="10dp"
+                android:src="@mipmap/head_img_a"
+                android:translationZ="999dp"
+                app:civ_border_color="#ffffff"
+                app:civ_border_width="2dp" />
+
+            <com.github.florent37.diagonallayout.DiagonalLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:elevation="10dp"
+                app:diagonal_angle="20"
+                app:diagonal_direction="left"
+                app:diagonal_position="bottom"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/actionbar_gradient" />
+
+            </com.github.florent37.diagonallayout.DiagonalLayout>
+        </FrameLayout>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="30dp"
+            android:background="@color/colorPrimaryAlpha"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:text="最近参加的活动"
+            android:textColor="@color/colorMainText"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toStartOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
+
+        <ListView
+            android:id="@+id/personActivityList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
