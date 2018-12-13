@@ -64,16 +64,16 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
-            app:cardElevation="8dp"
             android:id="@+id/cardView"
             android:layout_width="0dp"
-            android:layout_height="210dp"
+            android:layout_height="240dp"
             android:layout_marginStart="11dp"
             android:layout_marginLeft="11dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             app:cardCornerRadius="10dp"
+            app:cardElevation="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/cardView2"
             app:layout_constraintTop_toBottomOf="@+id/homepage_line_A">
@@ -84,18 +84,18 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/user_head_b"
-                    android:layout_width="0dp"
-                    android:layout_height="77dp"
+                    android:layout_width="149dp"
+                    android:layout_height="80dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
+                    android:src="@mipmap/head_img_a"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.279"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:src="@mipmap/head_img_a" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/user_name_b"
@@ -104,14 +104,14 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
+                    android:layout_marginTop="25dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
-                    android:layout_marginBottom="8dp"
                     android:textColor="@color/colorMainText"
                     android:textSize="18sp"
-                    app:layout_constraintBottom_toTopOf="@+id/user_content_b"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/user_head_b"
                     tools:text="石原里美" />
 
                 <TextView
@@ -120,11 +120,11 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginHorizontal="20dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="15dp"
                     android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/user_name_b"
                     tools:text="，去过100个国家，上天入地无所不能" />
 
             </android.support.constraint.ConstraintLayout>
@@ -132,16 +132,16 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
-            app:cardElevation="8dp"
             android:id="@+id/cardView2"
             android:layout_width="0dp"
-            android:layout_height="210dp"
+            android:layout_height="240dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="11dp"
             android:layout_marginRight="11dp"
             app:cardCornerRadius="10dp"
+            app:cardElevation="8dp"
             app:layout_constraintEnd_toStartOf="@+id/cardView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/homepage_line_A">
@@ -152,18 +152,17 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/user_head_a"
-                    android:layout_width="0dp"
+                    android:layout_width="149dp"
                     android:layout_height="80dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
+                    android:src="@mipmap/user_head"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.279"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:src="@mipmap/user_head"
                     tools:srcCompat="@mipmap/head_img_a" />
 
                 <TextView
@@ -173,14 +172,14 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
+                    android:layout_marginTop="25dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
-                    android:layout_marginBottom="8dp"
                     android:textColor="@color/colorMainText"
                     android:textSize="18sp"
-                    app:layout_constraintBottom_toTopOf="@+id/user_content_a"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/user_head_a"
                     tools:text="石原里美" />
 
                 <TextView
@@ -189,27 +188,27 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginHorizontal="20dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="15dp"
                     android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/user_name_a"
                     tools:text="谈过300次恋爱，去过100个国家，上天入地无所不能" />
 
             </android.support.constraint.ConstraintLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
-            app:cardElevation="8dp"
             android:id="@+id/cardView3"
             android:layout_width="0dp"
-            android:layout_height="210dp"
+            android:layout_height="240dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="11dp"
             android:layout_marginRight="11dp"
             app:cardCornerRadius="10dp"
+            app:cardElevation="8dp"
             app:layout_constraintEnd_toStartOf="@+id/cardView4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView2">
@@ -224,14 +223,14 @@
                     android:layout_height="77dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
+                    android:src="@mipmap/head_img_a"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.279"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:src="@mipmap/head_img_a"
                     tools:srcCompat="@mipmap/head_img_a" />
 
                 <TextView
@@ -241,14 +240,14 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
+                    android:layout_marginTop="25dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
-                    android:layout_marginBottom="8dp"
                     android:textColor="@color/colorMainText"
                     android:textSize="18sp"
-                    app:layout_constraintBottom_toTopOf="@+id/user_content_c"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/user_head_c"
                     tools:text="石原里美" />
 
                 <TextView
@@ -257,27 +256,27 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginHorizontal="20dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="15dp"
                     android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/user_name_c"
                     tools:text="谈过300次恋爱，去过100个国家，上天入地无所不能" />
 
             </android.support.constraint.ConstraintLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
-            app:cardElevation="8dp"
             android:id="@+id/cardView4"
             android:layout_width="0dp"
-            android:layout_height="210dp"
+            android:layout_height="240dp"
             android:layout_marginStart="11dp"
             android:layout_marginLeft="11dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             app:cardCornerRadius="10dp"
+            app:cardElevation="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/cardView3"
             app:layout_constraintTop_toBottomOf="@+id/cardView">
@@ -292,14 +291,14 @@
                     android:layout_height="77dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
+                    android:src="@mipmap/head_img_a"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.279"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:src="@mipmap/head_img_a"
                     tools:srcCompat="@mipmap/head_img_a" />
 
                 <TextView
@@ -309,27 +308,27 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
+                    android:layout_marginTop="25dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
-                    android:layout_marginBottom="8dp"
                     android:textColor="@color/colorMainText"
                     android:textSize="18sp"
-                    app:layout_constraintBottom_toTopOf="@+id/user_content_d"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/user_head_d"
                     tools:text="石原里美" />
 
                 <TextView
                     android:id="@+id/user_content_d"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="53dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginHorizontal="20dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="15dp"
                     android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/user_name_d"
                     tools:text="谈过300次恋爱，去过100个国家，上天入地无所不能" />
 
             </android.support.constraint.ConstraintLayout>
