@@ -1,4 +1,4 @@
-package com.example.great_fun;
+package com.example.great_fun_http;
 
 public class Friend {
     private int friendId;

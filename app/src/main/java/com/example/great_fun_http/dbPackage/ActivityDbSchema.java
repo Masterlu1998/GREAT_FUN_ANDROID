@@ -1,4 +1,4 @@
-package com.example.great_fun.dbPackage;
+package com.example.great_fun_http.dbPackage;
 
 public class ActivityDbSchema {
     public static final class ActivityTable {

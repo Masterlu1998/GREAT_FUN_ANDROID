@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.great_fun">
-
+    package="com.example.great_fun_http">
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.great_fun_http.MainActivity"
             android:label="@string/app_chinese_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,13 +22,14 @@
         </activity>
         <activity
             android:label="活动详情"
-            android:parentActivityName=".MainActivity"
-            android:name=".DetailActivity"></activity>
+            android:parentActivityName="com.example.great_fun_http.MainActivity"
+            android:name="com.example.great_fun_http.DetailActivity"></activity>
         <activity
             android:label="修改活动"
-            android:name=".PostDetailActivity"
-            android:parentActivityName=".MainActivity">
+            android:name="com.example.great_fun_http.PostDetailActivity"
+            android:parentActivityName="com.example.great_fun_http.MainActivity">
         </activity>
+
     </application>
 
 </manifest>

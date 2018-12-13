@@ -21,7 +21,7 @@
             tools:srcCompat="@mipmap/activity_img_b" />
 
         <TextView
-            android:id="@+id/activityTitle"
+            android:id="@+id/activityName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -49,7 +49,7 @@
             app:layout_constraintBottom_toTopOf="@+id/moreActivityDetail"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/activityTitle"
+            app:layout_constraintTop_toBottomOf="@+id/activityName"
             tools:text="他们自己找不痛快他们自己找不痛快他们自己找不痛快他们自己找不痛快他们自己找不痛快他们自己找不痛快" />
 
         <TextView
@@ -74,7 +74,7 @@
             android:layout_marginRight="30dp"
             android:textColor="@color/colorSupportText"
             android:textSize="14sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/activityTitle"
+            app:layout_constraintBaseline_toBaselineOf="@+id/activityName"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="2018-02-12" />
     </android.support.constraint.ConstraintLayout>

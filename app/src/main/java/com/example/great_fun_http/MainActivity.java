@@ -1,5 +1,6 @@
-package com.example.great_fun;
+package com.example.great_fun_http;
 
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
@@ -17,25 +18,23 @@ public class MainActivity extends AppCompatActivity implements TabHost.OnTabChan
 
     private Fragment []mFragments = new Fragment[4];
     private FragmentTabHost mTabHost;
+    private int tabIndex;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mFragments = TabGenerator.getFragments();
+        // 获取可能的参数
+        Intent intent = getIntent();
+        tabIndex = intent.getIntExtra("tabIndex", 0);
         // 初始化视图
         initView();
-        // 初始化数据库
-        ActivityCollection activityCollection = ActivityCollection.get(getApplicationContext());
-//        activityCollection.initActivityTable();
 
     }
 
     @Override
     protected void onDestroy() {
-        ActivityCollection activityCollection = ActivityCollection.get(getApplicationContext());
-//        activityCollection.destroyActivityTable();
-        Log.w("是否销毁", "是");
         super.onDestroy();
     }
 
@@ -55,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements TabHost.OnTabChan
 
         //去掉Tab 之间的分割线
         mTabHost.getTabWidget().setDividerDrawable(null);
-        mTabHost.setCurrentTab(0);
+        mTabHost.setCurrentTab(tabIndex);
     }
 
     @Override

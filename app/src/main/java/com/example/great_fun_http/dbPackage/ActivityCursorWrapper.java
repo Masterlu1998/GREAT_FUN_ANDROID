@@ -1,10 +1,10 @@
-package com.example.great_fun.dbPackage;
+package com.example.great_fun_http.dbPackage;
 
 import android.database.Cursor;
 import android.database.CursorWrapper;
 
-import com.example.great_fun.Activity;
-import com.example.great_fun.dbPackage.ActivityDbSchema.ActivityTable;
+import com.example.great_fun_http.Activity;
+import com.example.great_fun_http.dbPackage.ActivityDbSchema.ActivityTable;
 
 public class ActivityCursorWrapper extends CursorWrapper {
     public ActivityCursorWrapper(Cursor cursor) {
@@ -19,7 +19,7 @@ public class ActivityCursorWrapper extends CursorWrapper {
         String activityDate = getString(getColumnIndex(ActivityTable.Cols.activityDate));
 
         Activity activity = new Activity(activityId);
-        activity.setActivityTitle(activityTitle);
+        activity.setActivityName(activityTitle);
         activity.setActivityImgId(activityImgId);
         activity.setActivityContent(activityContent);
         activity.setActivityDate(activityDate);

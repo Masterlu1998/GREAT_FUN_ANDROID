@@ -1,4 +1,4 @@
-package com.example.great_fun;
+package com.example.great_fun_http;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

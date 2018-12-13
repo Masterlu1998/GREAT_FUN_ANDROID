@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">GREAT_FUN</string>
-    <string name="app_chinese_name">聚好玩</string>
+    <string name="app_chinese_name">聚好玩HTTP</string>
     <string name="title_friend_activity">好友</string>
     <string name="title_main_activity">主页</string>
     <string name="title_discover_activity">发现</string>

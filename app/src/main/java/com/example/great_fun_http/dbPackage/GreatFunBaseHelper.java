@@ -1,11 +1,10 @@
-package com.example.great_fun.dbPackage;
+package com.example.great_fun_http.dbPackage;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.great_fun.Activity;
-import com.example.great_fun.dbPackage.ActivityDbSchema.ActivityTable;
+import com.example.great_fun_http.dbPackage.ActivityDbSchema.ActivityTable;
 
 public class GreatFunBaseHelper extends SQLiteOpenHelper {
     private static final int VERSION = 1;

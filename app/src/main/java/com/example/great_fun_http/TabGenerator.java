@@ -1,4 +1,4 @@
-package com.example.great_fun;
+package com.example.great_fun_http;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
