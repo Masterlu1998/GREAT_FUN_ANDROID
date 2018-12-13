@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ public class HomepageFragment extends Fragment {
     // 两个轮播
     ViewPager mBannerViewPager;
     ViewPager mActivityViewPager;
+    int isInit = 0;
 
     // 四个用户卡片
     int []userHeadImgIdArray = new int[] {
@@ -83,14 +85,27 @@ public class HomepageFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_homepage, container, false);
 
         // 获取用户卡片元素
-        for (int i = 0; i < 4; i++) {
-            CircleImageView userHeadImageView = (CircleImageView) view.findViewById(userHeadImgIdArray[i]);
-            TextView userNameTextView = (TextView) view.findViewById(userNameIdArray[i]);
-            TextView userContentTextView = (TextView) view.findViewById(userContentIdArray[i]);
-            mUserHeadList.add(userHeadImageView);
-            mUserNameList.add(userNameTextView);
-            mUserContentList.add(userContentTextView);
+        if (isInit == 0 ) {
+            isInit = 1;
+            for (int i = 0; i < 4; i++) {
+                CircleImageView userHeadImageView = (CircleImageView) view.findViewById(userHeadImgIdArray[i]);
+                TextView userNameTextView = (TextView) view.findViewById(userNameIdArray[i]);
+                TextView userContentTextView = (TextView) view.findViewById(userContentIdArray[i]);
+                mUserHeadList.add(userHeadImageView);
+                mUserNameList.add(userNameTextView);
+                mUserContentList.add(userContentTextView);
+            }
+        } else {
+            for (int i = 0; i < 4; i++) {
+                CircleImageView userHeadImageView = (CircleImageView) view.findViewById(userHeadImgIdArray[i]);
+                TextView userNameTextView = (TextView) view.findViewById(userNameIdArray[i]);
+                TextView userContentTextView = (TextView) view.findViewById(userContentIdArray[i]);
+                mUserHeadList.set(i, userHeadImageView);
+                mUserNameList.set(i, userNameTextView);
+                mUserContentList.set(i, userContentTextView);
+            }
         }
+
 
         // 活动卡片轮播
         mActivityViewPager = (ViewPager) view.findViewById(R.id.activity_view_pager);
@@ -167,6 +182,7 @@ public class HomepageFragment extends Fragment {
                     JSONObject resObj = jsonUserBody.getJSONObject("obj");
                     JSONArray userJsonArray = resObj.getJSONArray("userList");
                     for (int i = 0; i < userJsonArray.length(); i++) {
+                        Log.d("执行", Integer.toString(i));
                         JSONObject userObj = userJsonArray.getJSONObject(i);
                         int userId = userObj.getInt("userId");
                         String userName = userObj.getString("userName");
