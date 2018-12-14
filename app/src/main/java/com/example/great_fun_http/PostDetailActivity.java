@@ -100,8 +100,8 @@ public class PostDetailActivity extends AppCompatActivity {
             try {
                 jsonBody = new JSONObject(jsonResult);
                 retcode = jsonBody.getInt("retcode");
+                JSONObject resObj = jsonBody.getJSONObject("obj");
                 if (retcode == 0) {
-                    JSONObject resObj = jsonBody.getJSONObject("obj");
                     imgUrl = resObj.getString("activityImgUrl");
                     Picasso.get().load(imgUrl).resize(800, 600).into(mPostActivityImg);
                     mPostActivityName.setText(resObj.getString("activityName"));

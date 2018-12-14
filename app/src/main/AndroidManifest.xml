@@ -29,7 +29,12 @@
             android:name="com.example.great_fun_http.PostDetailActivity"
             android:parentActivityName="com.example.great_fun_http.MainActivity">
         </activity>
-        <activity android:name=".AppLoginActivity"/>
+        <activity
+            android:label="登录"
+            android:parentActivityName=".MainActivity"
+            android:name=".AppLoginActivity">
+
+        </activity>
 
     </application>
 

@@ -7,13 +7,16 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.great_fun_http.httpHelper.HttpApiHelper;
@@ -22,15 +25,26 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class PersonDetailFragment extends Fragment {
     private ListView mListView;
+    private TextView mUserContentTV;
+    private TextView mUserNameTV;
+    private CircleImageView mUserHeadImg;
+    private Button mLogoutBtn;
     int isLoginFlag = 0;
+    int userId = -1;
+    String userHeadImg;
+    String userContent = "未登录";
+    String userName = "未登录";
 
     // 定义可以加载图片的simpleAdapter(By stackOverflow)
     public class MySimpleAdapter extends SimpleAdapter {
@@ -60,10 +74,7 @@ public class PersonDetailFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (isLoginFlag == 0) {
-            Intent intent = new Intent(getActivity(), AppLoginActivity.class);
-            startActivity(intent);
-        }
+
     }
 
     @Nullable
@@ -71,11 +82,58 @@ public class PersonDetailFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_person_detail, container, false);
         mListView = (ListView) view.findViewById(R.id.personActivityList);
-        String param = String.format("{ \"args\": { \"userId\": 2 } }");
-        new PersonDetailFragment.getUserActivityListTask().execute(param);
+        mUserContentTV = (TextView) view.findViewById(R.id.userContent);
+        mUserNameTV = (TextView) view.findViewById(R.id.userName);
+        mUserHeadImg = (CircleImageView) view.findViewById(R.id.userHeadImg);
+        mUserHeadImg.setImageResource(R.mipmap.default_img);
+        mLogoutBtn = (Button) view.findViewById(R.id.logoutBtn);
+        mLogoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isLoginFlag = 0;
+                userId = -1;
+                userHeadImg = null;
+                userContent = "未登录";
+                userName = "未登录";
+                Intent intent = new Intent(getActivity(), AppLoginActivity.class);
+                startActivity(intent);
+            }
+        });
+        if (isLoginFlag == 0 && userId == -1) {
+            // 未登录
+            isLoginFlag = 1;
+            Intent intent = new Intent(getActivity(), AppLoginActivity.class);
+            startActivityForResult(intent, 1);
+        } else {
+            // 已登录
+            String param = String.format("{ \"args\": { \"userId\": %s } }", userId);
+            new PersonDetailFragment.getUserActivityListTask().execute(param);
+            Picasso.get().load(userHeadImg).into(mUserHeadImg);
+            mUserNameTV.setText(userName);
+            mUserContentTV.setText(userContent);
+        }
+
         return view;
     }
 
+
+    // 完成登录回调
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case 1:
+                userId = data.getExtras().getInt("userId");
+                userName = data.getExtras().getString("userName");
+                userHeadImg = data.getExtras().getString("userHeadImg");
+                userContent = data.getExtras().getString("userContent");
+                Picasso.get().load(userHeadImg).into(mUserHeadImg);
+                mUserNameTV.setText(userName);
+                mUserContentTV.setText(userContent);
+                String param = String.format("{ \"args\": { \"userId\": %s } }", userId);
+                new PersonDetailFragment.getUserActivityListTask().execute(param);
+        }
+    }
 
     // 获取用户发布的活动列表
     public class getUserActivityListTask extends AsyncTask<String, Void, String> {
