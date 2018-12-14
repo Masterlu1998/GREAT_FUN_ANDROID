@@ -30,6 +30,7 @@ import java.util.Map;
 
 public class PersonDetailFragment extends Fragment {
     private ListView mListView;
+    int isLoginFlag = 0;
 
     // 定义可以加载图片的simpleAdapter(By stackOverflow)
     public class MySimpleAdapter extends SimpleAdapter {
@@ -56,6 +57,15 @@ public class PersonDetailFragment extends Fragment {
         return fragment;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (isLoginFlag == 0) {
+            Intent intent = new Intent(getActivity(), AppLoginActivity.class);
+            startActivity(intent);
+        }
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -66,6 +76,8 @@ public class PersonDetailFragment extends Fragment {
         return view;
     }
 
+
+    // 获取用户发布的活动列表
     public class getUserActivityListTask extends AsyncTask<String, Void, String> {
 
         final List<Activity> mActivityList = new ArrayList<>();

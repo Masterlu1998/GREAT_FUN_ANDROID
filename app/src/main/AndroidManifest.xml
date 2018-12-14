@@ -29,6 +29,7 @@
             android:name="com.example.great_fun_http.PostDetailActivity"
             android:parentActivityName="com.example.great_fun_http.MainActivity">
         </activity>
+        <activity android:name=".AppLoginActivity"/>
 
     </application>
 
