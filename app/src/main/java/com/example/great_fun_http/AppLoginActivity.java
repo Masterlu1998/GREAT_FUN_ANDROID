@@ -70,10 +70,7 @@ public class AppLoginActivity extends AppCompatActivity {
                         // 在全局变量中记录
                         SharedPreferences sharedPreferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
-                        editor.putString("userName", userName);
                         editor.putInt("userId", userId);
-                        editor.putString("userHeadImg", userHeadImg);
-                        editor.putString("userContent", userContent);
                         editor.apply();
                         // 返回结果
                         Intent intent = new Intent();

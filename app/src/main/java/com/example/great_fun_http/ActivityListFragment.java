@@ -1,6 +1,7 @@
 package com.example.great_fun_http;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -37,6 +38,7 @@ import java.util.List;
 public class ActivityListFragment extends Fragment {
 
     ViewPager mViewPager;
+    int userId;
 
 
     public static ActivityListFragment newInstance() {
@@ -47,7 +49,7 @@ public class ActivityListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
+
     }
 
     @Override
@@ -55,6 +57,7 @@ public class ActivityListFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.new_activity:
                 Intent intent = new Intent(getActivity(), PostDetailActivity.class);
+                intent.putExtra("userId", userId);
                 startActivity(intent);
                 return true;
             default:
@@ -142,6 +145,15 @@ public class ActivityListFragment extends Fragment {
         mViewPager.setOffscreenPageLimit(3);
 
         new GetActivitiesTask().execute();
+
+        SharedPreferences preferences = getActivity().getSharedPreferences("userInfo", getActivity().MODE_PRIVATE);
+        userId = preferences.getInt("userId", -1);
+        Log.d("userId", Integer.toString(userId));
+        if (userId == -1) {
+            setHasOptionsMenu(false);
+        } else {
+            setHasOptionsMenu(true);
+        }
 
         mViewPager.setCurrentItem(0);
         mViewPager.setPageTransformer(true, new ScaleInTransformer(0.8f));

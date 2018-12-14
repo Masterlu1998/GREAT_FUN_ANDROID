@@ -2,6 +2,7 @@ package com.example.great_fun_http;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -97,6 +98,10 @@ public class PersonDetailFragment extends Fragment {
                 userName = "未登录";
                 Intent intent = new Intent(getActivity(), AppLoginActivity.class);
                 startActivity(intent);
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
+                editor.putInt("userId", userId);
+                editor.apply();
             }
         });
         if (isLoginFlag == 0 && userId == -1) {

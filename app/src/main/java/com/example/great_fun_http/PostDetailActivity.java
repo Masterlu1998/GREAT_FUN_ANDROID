@@ -1,6 +1,7 @@
 package com.example.great_fun_http;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -26,10 +27,16 @@ public class PostDetailActivity extends AppCompatActivity {
     int activityId;
     int modifiedFlag = 0; // 0：表示新增 1：表示修改
     String imgUrl;
+    int userId = -1;
+    // 全局存储数据类型
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_detail);
+
+        // 从intent中获取userId
+        userId = getIntent().getIntExtra("userId", -1);
 
         // 获取控件
         Intent intent = getIntent();
@@ -70,11 +77,11 @@ public class PostDetailActivity extends AppCompatActivity {
                 }
                 if (modifiedFlag == 1) {
                     // 修改活动
-                    String params = String.format("{ \"args\": { \"activityId\": %s, \"activityName\": \"%s\", \"activityContent\": \"%s\", \"activityDate\": \"%s\", \"activityImgUrl\": \"%s\", \"activityPostUser\": %s } }", activityId, activityName, activityContent, activityDate, imgUrl,2);
+                    String params = String.format("{ \"args\": { \"activityId\": %s, \"activityName\": \"%s\", \"activityContent\": \"%s\", \"activityDate\": \"%s\", \"activityImgUrl\": \"%s\", \"activityPostUser\": %s } }", activityId, activityName, activityContent, activityDate, imgUrl, userId);
                     new PostDetailActivity.PostActivityTask().execute(params);
                 } else {
                     // 新增活动
-                    String params = String.format("{ \"args\": { \"activityName\": \"%s\", \"activityContent\": \"%s\", \"activityDate\": \"%s\", \"activityImgUrl\": \"%s\", \"activityPostUser\": %s } }", activityName, activityContent, activityDate, imgUrl,2);
+                    String params = String.format("{ \"args\": { \"activityName\": \"%s\", \"activityContent\": \"%s\", \"activityDate\": \"%s\", \"activityImgUrl\": \"%s\", \"activityPostUser\": %s } }", activityName, activityContent, activityDate, imgUrl, userId);
                     new PostDetailActivity.PostActivityTask().execute(params);
                 }
             }
