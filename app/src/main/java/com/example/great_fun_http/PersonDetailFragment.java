@@ -41,11 +41,10 @@ public class PersonDetailFragment extends Fragment {
     private TextView mUserNameTV;
     private CircleImageView mUserHeadImg;
     private Button mLogoutBtn;
-    int isLoginFlag = 0;
-    int userId = -1;
+    int userId;
     String userHeadImg;
-    String userContent = "未登录";
-    String userName = "未登录";
+    String userContent;
+    String userName;
 
     // 定义可以加载图片的simpleAdapter(By stackOverflow)
     public class MySimpleAdapter extends SimpleAdapter {
@@ -76,11 +75,14 @@ public class PersonDetailFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        SharedPreferences preferences = getActivity().getSharedPreferences("userInfo", getActivity().MODE_PRIVATE);
+        userId = preferences.getInt("userId", -1);
         View view = inflater.inflate(R.layout.fragment_person_detail, container, false);
         mListView = (ListView) view.findViewById(R.id.personActivityList);
         mUserContentTV = (TextView) view.findViewById(R.id.userContent);
@@ -91,7 +93,6 @@ public class PersonDetailFragment extends Fragment {
         mLogoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isLoginFlag = 0;
                 userId = -1;
                 userHeadImg = null;
                 userContent = "未登录";
@@ -104,13 +105,16 @@ public class PersonDetailFragment extends Fragment {
                 editor.apply();
             }
         });
-        if (isLoginFlag == 0 && userId == -1) {
+        if (userId == -1) {
             // 未登录
-            isLoginFlag = 1;
             Intent intent = new Intent(getActivity(), AppLoginActivity.class);
             startActivityForResult(intent, 1);
         } else {
             // 已登录
+            userHeadImg = preferences.getString("userHeadImg", "");
+            userName = preferences.getString("userName", "");
+            userContent = preferences.getString("userContent", "");
+
             String param = String.format("{ \"args\": { \"userId\": %s } }", userId);
             new PersonDetailFragment.getUserActivityListTask().execute(param);
             Picasso.get().load(userHeadImg).into(mUserHeadImg);

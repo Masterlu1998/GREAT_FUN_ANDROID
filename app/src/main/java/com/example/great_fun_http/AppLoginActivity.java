@@ -71,6 +71,10 @@ public class AppLoginActivity extends AppCompatActivity {
                         SharedPreferences sharedPreferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
                         editor.putInt("userId", userId);
+                        editor.putString("userName", userName);
+                        editor.putString("userHeadImg", userHeadImg);
+                        editor.putString("userContent", userContent);
+
                         editor.apply();
                         // 返回结果
                         Intent intent = new Intent();

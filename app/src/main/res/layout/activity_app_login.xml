@@ -109,7 +109,7 @@
                 android:layout_marginRight="30dp"
                 android:background="@drawable/bg_edittext_selector"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="textPassword"
                 app:layout_constraintBaseline_toBaselineOf="@+id/userPwdTitle"
                 app:layout_constraintEnd_toEndOf="parent" />
 
