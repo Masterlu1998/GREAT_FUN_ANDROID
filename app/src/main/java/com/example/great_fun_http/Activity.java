@@ -67,15 +67,6 @@ public class Activity {
         this.activityPostUser = activityPostUser;
     }
 
-    public Activity(int mActivityCardId, String mActivityCardTitle, int mActivityCrdImgId, String mActivityCardContent, String mActivityDate, String mActivityImgUrl) {
-        this.activityId = mActivityCardId;
-        this.activityName = mActivityCardTitle;
-        this.activityImgId = mActivityCrdImgId;
-        this.activityContent = mActivityCardContent;
-        this.activityDate = mActivityDate;
-        this.activityImgUrl = mActivityImgUrl;
-    }
-
     public Activity(int activityId, String activityName, String activityContent, String activityDate, String activityImgUrl, int activityPostUser) {
         this.activityId = activityId;
         this.activityName = activityName;
