@@ -209,6 +209,7 @@ public class ActivityListFragment extends Fragment {
         mViewPager.setPageTransformer(true, new ScaleInTransformer(0.8f));
 
         // 默认执行发现视图
+        getActivity().setTitle("发现");
         new GetActivitiesTask().execute();
 
         // 获取userId判断是否显示加号,能够发布活动
@@ -225,6 +226,7 @@ public class ActivityListFragment extends Fragment {
         mMineBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getActivity().setTitle("我的");
                 String param = String.format("{ \"args\": { \"userId\": %s } }", userId);
                 new GetUserActivityTask().execute(param);
             }
@@ -235,6 +237,7 @@ public class ActivityListFragment extends Fragment {
         mDiscoverBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getActivity().setTitle("发现");
                 new GetActivitiesTask().execute();
             }
         });
