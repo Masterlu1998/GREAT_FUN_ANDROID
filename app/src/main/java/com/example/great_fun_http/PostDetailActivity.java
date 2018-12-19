@@ -35,8 +35,9 @@ public class PostDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_detail);
 
-        // 从intent中获取userId
-        userId = getIntent().getIntExtra("userId", -1);
+        // 从全局变量中获取userId
+        SharedPreferences preferences = this.getSharedPreferences("userInfo", this.MODE_PRIVATE);
+        userId = preferences.getInt("userId", -1);
 
         // 获取控件
         Intent intent = getIntent();
