@@ -36,7 +36,8 @@ public class Friend {
         this.friendDate = mFriendDate;
     }
 
-    public Friend(String mFriendName, String mFriendMessage, String friendHttpImg, String mFriendDate) {
+    public Friend(int mFriendId, String mFriendName, String mFriendMessage, String friendHttpImg, String mFriendDate) {
+        this.friendId = mFriendId;
         this.friendName = mFriendName;
         this.friendMessage = mFriendMessage;
         this.friendHttpImg = friendHttpImg;

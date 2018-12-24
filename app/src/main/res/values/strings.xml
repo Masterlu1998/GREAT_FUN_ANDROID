@@ -12,6 +12,6 @@
     <string name="title_post_activity">活动名称</string>
     <string name="date_post_activity">活动时间</string>
     <string name="content_post_activity">活动内容</string>
-    <string name="button_post_activity" >修改活动</string>
+    <string name="button_post_activity">修改活动</string>
 
 </resources>

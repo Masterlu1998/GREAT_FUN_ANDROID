@@ -1,5 +1,6 @@
 package com.example.great_fun_http;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -45,7 +46,7 @@ public class FriendListFragment extends Fragment {
     }
 
 
-    private class FriendHolder extends RecyclerView.ViewHolder {
+    private class FriendHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // 获取空间实例
         private Friend mFriend;
         private TextView mFriendName;
@@ -58,6 +59,7 @@ public class FriendListFragment extends Fragment {
             mFriendHead = (CircleImageView) itemView.findViewById(R.id.friendHead);
             mFriendMessage = (TextView) itemView.findViewById(R.id.friendMessage);
             mFriendDate = (TextView) itemView.findViewById(R.id.friendDate);
+            itemView.setOnClickListener(this);
         }
 
         // 数据绑定
@@ -67,6 +69,18 @@ public class FriendListFragment extends Fragment {
             mFriendMessage.setText(mFriend.getFriendMessage());
             Picasso.get().load(mFriend.getFriendHttpImg()).into(mFriendHead);
             mFriendDate.setText(mFriend.getFriendDate());
+        }
+
+        // 点击事件
+
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(getActivity(), FriendChatActivity.class);
+            intent.putExtra("friendId", mFriend.getFriendId());
+            intent.putExtra("friendHttpImg", mFriend.getFriendHttpImg());
+            intent.putExtra("friendName", mFriend.getFriendName());
+            intent.putExtra("friendLastMsg", mFriend.getFriendMessage());
+            startActivity(intent);
         }
     }
 
@@ -122,6 +136,7 @@ public class FriendListFragment extends Fragment {
                         for (int i = 0; i < friendList.length(); i++) {
                             JSONObject friendItem = friendList.getJSONObject(i);
                             Friend friend = new Friend(
+                                    friendItem.getInt("user_id"),
                                     friendItem.getString("friend_user_name"),
                                     friendItem.getString("last_message"),
                                     friendItem.getString("user_head_img"),
