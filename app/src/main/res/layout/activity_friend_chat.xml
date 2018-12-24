@@ -25,17 +25,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="right">
-
-                    <TextView
-                        android:id="@+id/friendLastMsg"
-                        android:layout_width="wrap_content"
-                        android:layout_height="25dp"
-                        android:textSize="18sp"
-                        android:layout_gravity="center_vertical"
-
-                        tools:text="测试数据"/>
+                    android:orientation="horizontal">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/friendHttpImg"
@@ -44,6 +34,14 @@
                         android:layout_marginHorizontal="20dp"
                         android:layout_marginVertical="10dp"
                         tools:src="@mipmap/head_img_a" />
+
+                    <TextView
+                        android:id="@+id/friendLastMsg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:textSize="18sp"
+                        android:layout_gravity="center_vertical"
+                        tools:text="测试数据"/>
 
 
 

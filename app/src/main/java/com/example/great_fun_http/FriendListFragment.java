@@ -1,6 +1,7 @@
 package com.example.great_fun_http;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -29,6 +30,8 @@ public class FriendListFragment extends Fragment {
     private RecyclerView mCrimeRecyclerView;
     private FriendAdapter mAdapter;
 
+    int userId;
+
     public static FriendListFragment newInstance() {
         FriendListFragment fragment = new FriendListFragment();
         return fragment;
@@ -39,8 +42,17 @@ public class FriendListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_friend_list, container, false);
         mCrimeRecyclerView = (RecyclerView) view.findViewById(R.id.friend_recycler_view);
         mCrimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        String param = "{ \"userId\": 1 }";
-        new GetFriendListTask().execute(param);
+        SharedPreferences preferences = getActivity().getSharedPreferences("userInfo", getActivity().MODE_PRIVATE);
+        userId = preferences.getInt("userId", -1);
+        if (userId == -1) {
+            Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(getActivity(), AppLoginActivity.class);
+            startActivityForResult(intent, 1);
+        } else {
+            String param = String.format("{ \"userId\": %s }", userId);
+            new GetFriendListTask().execute(param);
+        }
+
 
         return view;
     }
@@ -151,6 +163,17 @@ public class FriendListFragment extends Fragment {
                     e.printStackTrace();
                 }
             }
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case 1:
+                userId = data.getExtras().getInt("userId");
+                String param = String.format("{ \"userId\": %s }", userId);
+                new GetFriendListTask().execute(param);
         }
     }
 }
