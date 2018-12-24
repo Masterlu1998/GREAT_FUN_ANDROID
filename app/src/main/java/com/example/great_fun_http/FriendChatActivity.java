@@ -99,7 +99,7 @@ public class FriendChatActivity extends AppCompatActivity {
                 // 新建一个TextView
                 TextView newTextView = new TextView(FriendChatActivity.this);
                 String userMsg = userMsgET.getText().toString();
-                String msgObj = String.format("{ \"userId\": %s, \"message\": \"%s\" }", friendId, userMsg);
+                String msgObj = String.format("{ \"fromUserId\": %s , \"userId\": %s, \"message\": \"%s\" }", userId, friendId, userMsg);
                 mSocket.emit("msg", msgObj);
                 newTextView.setText(userMsg);
                 newTextView.setTextSize(18);
@@ -199,6 +199,3 @@ public class FriendChatActivity extends AppCompatActivity {
     }
 }
 
-
-
-//
