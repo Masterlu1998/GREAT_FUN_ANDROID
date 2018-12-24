@@ -1,5 +1,6 @@
 package com.example.great_fun_http;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -9,7 +10,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.great_fun_http.httpHelper.HttpApiHelper;
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -28,18 +38,12 @@ public class FriendListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_friend_list, container, false);
         mCrimeRecyclerView = (RecyclerView) view.findViewById(R.id.friend_recycler_view);
         mCrimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        updateUI();
+        String param = "{ \"userId\": 1 }";
+        new GetFriendListTask().execute(param);
 
         return view;
     }
 
-    private void updateUI() {
-        List<Friend> mFriends = FriendCollection.getFriends();
-
-        mAdapter = new FriendAdapter(mFriends);
-        mCrimeRecyclerView.setAdapter(mAdapter);
-    }
 
     private class FriendHolder extends RecyclerView.ViewHolder {
         // 获取空间实例
@@ -61,7 +65,7 @@ public class FriendListFragment extends Fragment {
             mFriend = friend;
             mFriendName.setText(mFriend.getFriendName());
             mFriendMessage.setText(mFriend.getFriendMessage());
-            mFriendHead.setImageResource(mFriend.getFriendImg());
+            Picasso.get().load(mFriend.getFriendHttpImg()).into(mFriendHead);
             mFriendDate.setText(mFriend.getFriendDate());
         }
     }
@@ -90,7 +94,48 @@ public class FriendListFragment extends Fragment {
 
         @Override
         public int getItemCount() {
-            return FriendCollection.getSize();
+            return mFriends.size();
+        }
+    }
+
+    private class GetFriendListTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... strings) {
+            String params = strings[0];
+            return HttpApiHelper.getApiData(params, "http://116.62.156.102:7080/android/getFriendList");
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            final List<Friend> apiFriendList = new ArrayList<>();
+            JSONObject jsonBody;
+            int retcode = 0;
+            if (s.equals("")) {
+                Toast.makeText(getActivity(), "服务器无返回", Toast.LENGTH_SHORT).show();
+            } else {
+                try {
+                    jsonBody = new JSONObject(s);
+                    retcode = jsonBody.getInt("retcode");
+                    if (retcode == 0) {
+                        JSONObject jsonRes = jsonBody.getJSONObject("obj");
+                        JSONArray friendList = jsonRes.getJSONArray("friendList");
+                        for (int i = 0; i < friendList.length(); i++) {
+                            JSONObject friendItem = friendList.getJSONObject(i);
+                            Friend friend = new Friend(
+                                    friendItem.getString("friend_user_name"),
+                                    friendItem.getString("last_message"),
+                                    friendItem.getString("user_head_img"),
+                                    friendItem.getString("send_date")
+                            );
+                            apiFriendList.add(friend);
+                        }
+                        mAdapter = new FriendAdapter(apiFriendList);
+                        mCrimeRecyclerView.setAdapter(mAdapter);
+                    }
+                } catch(JSONException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }

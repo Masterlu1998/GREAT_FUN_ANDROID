@@ -6,6 +6,7 @@ public class Friend {
     private String friendMessage;
     private int friendImg;
     private String friendDate;
+    private String friendHttpImg;
 
     public int getFriendId() {
         return friendId;
@@ -33,5 +34,20 @@ public class Friend {
         this.friendMessage = mFriendMessage;
         this.friendImg = mFriendImg;
         this.friendDate = mFriendDate;
+    }
+
+    public Friend(String mFriendName, String mFriendMessage, String friendHttpImg, String mFriendDate) {
+        this.friendName = mFriendName;
+        this.friendMessage = mFriendMessage;
+        this.friendHttpImg = friendHttpImg;
+        this.friendDate = mFriendDate;
+    }
+
+    public String getFriendHttpImg() {
+        return friendHttpImg;
+    }
+
+    public void setFriendHttpImg(String friendHttpImg) {
+        this.friendHttpImg = friendHttpImg;
     }
 }
