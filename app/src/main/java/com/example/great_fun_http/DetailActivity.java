@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -46,6 +47,8 @@ public class DetailActivity extends AppCompatActivity {
         activityId = intent.getIntExtra("activityId", 1);
         String param = String.format("{ \"args\": { \"activityId\": %s, \"userId\": %s } }", activityId, userId);
         new GetActivityDetailTask().execute(param);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     public class GetActivityDetailTask extends AsyncTask<String, Void, String> {
@@ -132,5 +135,17 @@ public class DetailActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home://增加点击事件
+                finish();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

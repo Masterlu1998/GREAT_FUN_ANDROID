@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -139,6 +140,7 @@ public class FriendChatActivity extends AppCompatActivity {
             }
         });
         setTitle(friendName);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
 
@@ -196,6 +198,18 @@ public class FriendChatActivity extends AppCompatActivity {
 
             mLinearLayout.addView(newLinearLayout, -1);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home://增加点击事件
+                finish();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 
