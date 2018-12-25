@@ -26,13 +26,13 @@
             android:label="活动详情" />
         <activity
             android:name=".PostDetailActivity"
-            android:label="修改活动"></activity>
+            android:label="修改活动" />
         <activity
             android:name=".AppLoginActivity"
             android:label="登录"
-            android:parentActivityName=".MainActivity"></activity>
-        <activity
-            android:name=".FriendChatActivity"></activity>
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".FriendChatActivity" />
+        <activity android:name=".SearchFriendActivity"></activity>
     </application>
 
 </manifest>

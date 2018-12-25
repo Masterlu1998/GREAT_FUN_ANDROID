@@ -11,6 +11,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -47,10 +50,12 @@ public class FriendListFragment extends Fragment {
         SharedPreferences preferences = getActivity().getSharedPreferences("userInfo", getActivity().MODE_PRIVATE);
         userId = preferences.getInt("userId", -1);
         if (userId == -1) {
+            setHasOptionsMenu(false);
             Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(getActivity(), AppLoginActivity.class);
             startActivityForResult(intent, 1);
         } else {
+            setHasOptionsMenu(true);
             String param = String.format("{ \"userId\": %s }", userId);
             new GetFriendListTask().execute(param);
         }
@@ -59,13 +64,13 @@ public class FriendListFragment extends Fragment {
         return view;
     }
 
-
+    // 回退刷新
     @Override
     public void onResume() {
         super.onResume();
         String param = String.format("{ \"userId\": %s }", userId);
         new GetFriendListTask().execute(param);
-        Log.d("状态", "huifu");
+        Log.d("状态PostDetailActivity", "huifu");
     }
 
     private class FriendHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -94,7 +99,6 @@ public class FriendListFragment extends Fragment {
         }
 
         // 点击事件
-
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(getActivity(), FriendChatActivity.class);
@@ -186,4 +190,24 @@ public class FriendListFragment extends Fragment {
                 new GetFriendListTask().execute(param);
         }
     }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.search_friend, menu);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.search_friend:
+                Intent intent = new Intent(getActivity(), SearchFriendActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 }
