@@ -51,6 +51,14 @@ public class DetailActivity extends AppCompatActivity {
 
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String param = String.format("{ \"args\": { \"activityId\": %s, \"userId\": %s } }", activityId, userId);
+        new GetActivityDetailTask().execute(param);
+    }
+
     public class GetActivityDetailTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
@@ -78,7 +86,6 @@ public class DetailActivity extends AppCompatActivity {
                         mJoinActivity.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                mJoinActivity.setText("参加活动");
                                 String params = String.format("{ \"args\": { \"activityId\": %s, \"userId\": %s, \"operation\": -1 } }", activityId, userId);
                                 new DetailActivity.ModifyActivityTask().execute(params);
                             }
@@ -88,7 +95,6 @@ public class DetailActivity extends AppCompatActivity {
                         mJoinActivity.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                mJoinActivity.setText("取消活动");
                                 String params = String.format("{ \"args\": { \"activityId\": %s, \"userId\": %s, \"operation\": 1 } }", activityId, userId);
                                 new DetailActivity.ModifyActivityTask().execute(params);
                             }
@@ -124,9 +130,7 @@ public class DetailActivity extends AppCompatActivity {
                     retcode = jsonBody.getInt("retcode");
                     if (retcode == 0) {
                         Toast.makeText(DetailActivity.this,"修改成功", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(DetailActivity.this, DetailActivity.class);
-                        intent.putExtra("activityId", activityId);
-                        startActivity(intent);
+                        recreate();
                     } else {
                         Toast.makeText(DetailActivity.this,"服务器请求失败", Toast.LENGTH_LONG).show();
                     }

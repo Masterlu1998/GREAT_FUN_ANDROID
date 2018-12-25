@@ -36,6 +36,7 @@ public class ActivityListFragment extends Fragment {
     Button mDiscoverBtn;
     Button mMineBtn;
     int userId;
+    int typeFlag = -1;
 
 
     public static ActivityListFragment newInstance() {
@@ -226,6 +227,7 @@ public class ActivityListFragment extends Fragment {
         mMineBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                typeFlag = 1;
                 getActivity().setTitle("我的");
                 String param = String.format("{ \"args\": { \"userId\": %s } }", userId);
                 new GetUserActivityTask().execute(param);
@@ -237,11 +239,23 @@ public class ActivityListFragment extends Fragment {
         mDiscoverBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                typeFlag = -1;
                 getActivity().setTitle("发现");
                 new GetActivitiesTask().execute();
             }
         });
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        if (typeFlag == 1) {
+            typeFlag = -1;
+            getActivity().setTitle("我的");
+            String param = String.format("{ \"args\": { \"userId\": %s } }", userId);
+            new GetUserActivityTask().execute(param);
+        }
+        super.onResume();
     }
 
     @Override

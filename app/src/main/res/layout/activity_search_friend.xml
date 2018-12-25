@@ -10,7 +10,7 @@
     <EditText
         android:id="@+id/searchKeywords"
         android:layout_width="280dp"
-        android:layout_height="30dp"
+        android:layout_height="37dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/bg_edittext_selector"
@@ -23,8 +23,8 @@
 
     <Button
         android:id="@+id/search"
-        android:layout_width="65dp"
-        android:layout_height="30dp"
+        android:layout_width="70dp"
+        android:layout_height="37dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/btn_shape"
