@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,6 +47,8 @@ public class FriendChatActivity extends AppCompatActivity {
     TextView friendMsgTV;
     Button emitBtn;
     LinearLayout mLinearLayout;
+    ScrollView mScrollView;
+
     io.socket.client.Socket mSocket;
 
 
@@ -85,6 +88,7 @@ public class FriendChatActivity extends AppCompatActivity {
         friendMsgTV.setText(friendLastMsg);
 
         emitBtn = findViewById(R.id.emit);
+        mScrollView = (ScrollView) findViewById(R.id.messageList);
         emitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,8 +135,16 @@ public class FriendChatActivity extends AppCompatActivity {
                 newLinearLayout.addView(newCircleImageView);
 
                 mLinearLayout.addView(newLinearLayout, -1);
+                mScrollView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        mScrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                    }
+                });
             }
         });
+
+
         mSocket.on(Integer.toString(userId), new Emitter.Listener() {
             @Override
             public void call(Object... args) {
@@ -145,6 +157,9 @@ public class FriendChatActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
+
+
+
 
     @Override
     protected void onDestroy() {
@@ -199,6 +214,12 @@ public class FriendChatActivity extends AppCompatActivity {
 
 
             mLinearLayout.addView(newLinearLayout, -1);
+            mScrollView.post(new Runnable() {
+                @Override
+                public void run() {
+                    mScrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                }
+            });
         }
     }
 
