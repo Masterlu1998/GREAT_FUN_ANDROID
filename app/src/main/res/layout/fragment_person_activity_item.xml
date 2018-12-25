@@ -5,7 +5,8 @@
     android:id="@+id/linearLayout2"
     android:layout_width="match_parent"
     android:layout_height="160dp"
-    tools:layout_editor_absoluteY="81dp">
+    tools:layout_editor_absoluteY="81dp"
+    android:background="@color/chatGbColor">
 
     <ImageView
         android:id="@+id/personActivityImg"
