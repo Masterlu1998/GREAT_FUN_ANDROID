@@ -101,7 +101,9 @@ public class FriendChatActivity extends AppCompatActivity {
                 TextView newTextView = new TextView(FriendChatActivity.this);
                 String userMsg = userMsgET.getText().toString();
                 String msgObj = String.format("{ \"fromUserId\": %s , \"userId\": %s, \"message\": \"%s\" }", userId, friendId, userMsg);
+                userMsgET.setText("");
                 mSocket.emit("msg", msgObj);
+
                 newTextView.setText(userMsg);
                 newTextView.setTextSize(18);
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(

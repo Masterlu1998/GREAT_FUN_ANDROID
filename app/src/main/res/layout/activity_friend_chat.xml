@@ -9,46 +9,47 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@color/chatGbColor">
 
-    <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/userMsg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
             <LinearLayout
-                android:id="@id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="match_parent"
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/friendHttpImg"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="10dp"
+                    tools:src="@mipmap/head_img_a" />
+
+                <TextView
+                    android:id="@+id/friendLastMsg"
+                    android:layout_width="220dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_gravity="center_vertical"
+                    android:textSize="18sp"
+                    tools:text="测试数据测试数据测试数据测试数据测试数据测试数据测试数据测试数据" />
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/friendHttpImg"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_marginHorizontal="20dp"
-                        android:layout_marginVertical="10dp"
-                        tools:src="@mipmap/head_img_a" />
-
-                    <TextView
-                        android:id="@+id/friendLastMsg"
-                        android:layout_width="200dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:textSize="18sp"
-                        tools:text="测试数据测试数据测试数据测试数据测试数据测试数据测试数据测试数据" />
-
-
-
-                </LinearLayout>
 
             </LinearLayout>
+
+        </LinearLayout>
 
     </ScrollView>
 
