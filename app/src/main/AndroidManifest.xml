@@ -32,7 +32,9 @@
             android:label="登录"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".FriendChatActivity" />
-        <activity android:name=".SearchFriendActivity"></activity>
+        <activity
+            android:name=".SearchFriendActivity"
+            android:label="搜索"></activity>
     </application>
 
 </manifest>

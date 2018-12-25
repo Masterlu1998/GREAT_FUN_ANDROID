@@ -28,13 +28,6 @@ public class Friend {
         return friendDate;
     }
 
-    public Friend(int mFriendId, String mFriendName, String mFriendMessage, int mFriendImg, String mFriendDate) {
-        this.friendId = mFriendId;
-        this.friendName = mFriendName;
-        this.friendMessage = mFriendMessage;
-        this.friendImg = mFriendImg;
-        this.friendDate = mFriendDate;
-    }
 
     public Friend(int mFriendId, String mFriendName, String mFriendMessage, String friendHttpImg, String mFriendDate) {
         this.friendId = mFriendId;

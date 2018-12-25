@@ -68,6 +68,7 @@ public class FriendListFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        setHasOptionsMenu(true);
         String param = String.format("{ \"userId\": %s }", userId);
         new GetFriendListTask().execute(param);
         Log.d("状态PostDetailActivity", "huifu");

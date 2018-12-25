@@ -8,13 +8,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -26,12 +24,10 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -46,25 +42,6 @@ public class PersonDetailFragment extends Fragment {
     String userContent;
     String userName;
 
-    // 定义可以加载图片的simpleAdapter(By stackOverflow)
-    public class MySimpleAdapter extends SimpleAdapter {
-        public MySimpleAdapter(Context context, List<? extends Map<String, ?>> data, int resource, String[] from, int[] to) {
-            super(context, data, resource, from, to);
-        }
-
-        public View getView(int position, View convertView, ViewGroup parent) {
-            View view = super.getView(position, convertView, parent);
-
-            ImageView img = (ImageView) view.getTag();
-            if (img == null) {
-                img = (ImageView) view.findViewById(R.id.personActivityImg);
-                view.setTag(img);
-            }
-            String url = ((Map) getItem(position)).get("activityImgUrl").toString();
-            Picasso.get().load(url).resize(800, 600).into(img);
-            return view;
-        }
-    }
 
     public static PersonDetailFragment newInstance() {
         PersonDetailFragment fragment = new PersonDetailFragment();
@@ -189,7 +166,7 @@ public class PersonDetailFragment extends Fragment {
                         item.put("activityImgUrl",activity.getActivityImgUrl());
                         data.add(item);
                     }
-                    SimpleAdapter adapter = new MySimpleAdapter(
+                    SimpleAdapter adapter = new ActivitySimpleAdapter(
                             getContext(),
                             data,
                             R.layout.fragment_person_activity_item,
