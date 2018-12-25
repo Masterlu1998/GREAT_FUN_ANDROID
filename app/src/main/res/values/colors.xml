@@ -10,5 +10,6 @@
     <color name="colorBgText">#ececec</color>
     <color name="colorPrimaryC">#6967ab</color>
     <color name="colorPrimaryD">#71b2ee</color>
+    <color name="chatGbColor">#F1F4F9</color>
 
 </resources>
