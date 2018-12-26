@@ -92,55 +92,61 @@ public class FriendChatActivity extends AppCompatActivity {
         emitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LinearLayout newLinearLayout = new LinearLayout(FriendChatActivity.this);
-                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT
-                );
-                newLinearLayout.setOrientation(LinearLayout.HORIZONTAL);
-                newLinearLayout.setGravity(Gravity.RIGHT);
-                newLinearLayout.setLayoutParams(layoutParams);
-
-                // 新建一个TextView
-                TextView newTextView = new TextView(FriendChatActivity.this);
                 String userMsg = userMsgET.getText().toString();
-                String msgObj = String.format("{ \"fromUserId\": %s , \"userId\": %s, \"message\": \"%s\" }", userId, friendId, userMsg);
-                userMsgET.setText("");
-                mSocket.emit("msg", msgObj);
+                if (userMsg.equals("")) {
+                    Toast.makeText(FriendChatActivity.this, "聊天内容不能为空", Toast.LENGTH_SHORT).show();
+                } else {
+                    LinearLayout newLinearLayout = new LinearLayout(FriendChatActivity.this);
+                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                            ViewGroup.LayoutParams.MATCH_PARENT,
+                            ViewGroup.LayoutParams.WRAP_CONTENT
+                    );
+                    newLinearLayout.setOrientation(LinearLayout.HORIZONTAL);
+                    newLinearLayout.setGravity(Gravity.RIGHT);
+                    newLinearLayout.setLayoutParams(layoutParams);
 
-                newTextView.setText(userMsg);
-                newTextView.setTextSize(18);
-                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.WRAP_CONTENT,
-                        dp2px(FriendChatActivity.this, 25)
-                );
-                lp.gravity = Gravity.CENTER_VERTICAL;
-                newTextView.setLayoutParams(lp);
-                newLinearLayout.addView(newTextView);
+                    // 新建一个TextView
+                    TextView newTextView = new TextView(FriendChatActivity.this);
 
-                // 新建一个头像
-                CircleImageView newCircleImageView = new CircleImageView(FriendChatActivity.this);
-                LinearLayout.LayoutParams IVlayoutParams = new LinearLayout.LayoutParams(
-                        dp2px(FriendChatActivity.this, 60),
-                        dp2px(FriendChatActivity.this, 60)
-                );
-                IVlayoutParams.setMargins(
-                        dp2px(FriendChatActivity.this, 20),
-                        dp2px(FriendChatActivity.this, 10),
-                        dp2px(FriendChatActivity.this, 20),
-                        dp2px(FriendChatActivity.this, 10)
-                );
-                newCircleImageView.setLayoutParams(IVlayoutParams);
-                Picasso.get().load(userHeadImg).into(newCircleImageView);
-                newLinearLayout.addView(newCircleImageView);
+                    String msgObj = String.format("{ \"fromUserId\": %s , \"userId\": %s, \"message\": \"%s\" }", userId, friendId, userMsg);
+                    userMsgET.setText("");
+                    mSocket.emit("msg", msgObj);
 
-                mLinearLayout.addView(newLinearLayout, -1);
-                mScrollView.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        mScrollView.fullScroll(ScrollView.FOCUS_DOWN);
-                    }
-                });
+                    newTextView.setText(userMsg);
+                    newTextView.setTextSize(18);
+                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                            ViewGroup.LayoutParams.WRAP_CONTENT,
+                            dp2px(FriendChatActivity.this, 25)
+                    );
+                    lp.gravity = Gravity.CENTER_VERTICAL;
+                    newTextView.setLayoutParams(lp);
+                    newLinearLayout.addView(newTextView);
+
+                    // 新建一个头像
+                    CircleImageView newCircleImageView = new CircleImageView(FriendChatActivity.this);
+                    LinearLayout.LayoutParams IVlayoutParams = new LinearLayout.LayoutParams(
+                            dp2px(FriendChatActivity.this, 60),
+                            dp2px(FriendChatActivity.this, 60)
+                    );
+                    IVlayoutParams.setMargins(
+                            dp2px(FriendChatActivity.this, 20),
+                            dp2px(FriendChatActivity.this, 10),
+                            dp2px(FriendChatActivity.this, 20),
+                            dp2px(FriendChatActivity.this, 10)
+                    );
+                    newCircleImageView.setLayoutParams(IVlayoutParams);
+                    Picasso.get().load(userHeadImg).into(newCircleImageView);
+                    newLinearLayout.addView(newCircleImageView);
+
+                    mLinearLayout.addView(newLinearLayout, -1);
+                    mScrollView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            mScrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                        }
+                    });
+                }
+
             }
         });
 

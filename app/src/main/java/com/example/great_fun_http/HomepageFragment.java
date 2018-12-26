@@ -111,7 +111,6 @@ public class HomepageFragment extends Fragment {
         mActivityViewPager = (ViewPager) view.findViewById(R.id.activity_view_pager);
         mActivityViewPager.setPageMargin(60);
         mActivityViewPager.setOffscreenPageLimit(3);
-        mActivityViewPager.setCurrentItem(200);
         mActivityViewPager.setPageTransformer(true, new ScaleInTransformer(0.8f));
 
         // 头部卡片轮播
@@ -232,6 +231,8 @@ public class HomepageFragment extends Fragment {
                             return 1000;
                         }
                     });
+                    mActivityViewPager.setCurrentItem(200);
+
 
                 } else {
                     Toast.makeText(getActivity(), "网络连接失败", Toast.LENGTH_LONG).show();

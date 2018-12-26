@@ -72,19 +72,26 @@ public class PostDetailActivity extends AppCompatActivity {
                 String activityDate = mPostActivityDate.getText().toString();
                 String activityContent = mPostActivityContent.getText().toString();
 
-                // 实例化活动控制集
-                // TODO: 图片暂时写死，不知道咋办
-                if (imgUrl == null) {
-                    imgUrl = "http://116.62.156.102:7080/images/activity_img_c.jpeg";
-                }
-                if (modifiedFlag == 1) {
-                    // 修改活动
-                    String params = String.format("{ \"args\": { \"activityId\": %s, \"activityName\": \"%s\", \"activityContent\": \"%s\", \"activityDate\": \"%s\", \"activityImgUrl\": \"%s\", \"activityPostUser\": %s } }", activityId, activityName, activityContent, activityDate, imgUrl, userId);
-                    new PostDetailActivity.PostActivityTask().execute(params);
+                if (activityName.equals("")) {
+                    Toast.makeText(PostDetailActivity.this, "活动名称不能为空", Toast.LENGTH_SHORT).show();
+                } else if (activityDate.equals("")) {
+                    Toast.makeText(PostDetailActivity.this, "活动日期不能为空", Toast.LENGTH_SHORT).show();
+                } else if (activityContent.equals("")) {
+                    Toast.makeText(PostDetailActivity.this, "活动内容不能为空", Toast.LENGTH_SHORT).show();
                 } else {
-                    // 新增活动
-                    String params = String.format("{ \"args\": { \"activityName\": \"%s\", \"activityContent\": \"%s\", \"activityDate\": \"%s\", \"activityImgUrl\": \"%s\", \"activityPostUser\": %s } }", activityName, activityContent, activityDate, imgUrl, userId);
-                    new PostDetailActivity.PostActivityTask().execute(params);
+                    // TODO: 图片暂时写死，不知道咋办
+                    if (imgUrl == null) {
+                        imgUrl = "http://116.62.156.102:7080/images/activity_img_c.jpeg";
+                    }
+                    if (modifiedFlag == 1) {
+                        // 修改活动
+                        String params = String.format("{ \"args\": { \"activityId\": %s, \"activityName\": \"%s\", \"activityContent\": \"%s\", \"activityDate\": \"%s\", \"activityImgUrl\": \"%s\", \"activityPostUser\": %s } }", activityId, activityName, activityContent, activityDate, imgUrl, userId);
+                        new PostDetailActivity.PostActivityTask().execute(params);
+                    } else {
+                        // 新增活动
+                        String params = String.format("{ \"args\": { \"activityName\": \"%s\", \"activityContent\": \"%s\", \"activityDate\": \"%s\", \"activityImgUrl\": \"%s\", \"activityPostUser\": %s } }", activityName, activityContent, activityDate, imgUrl, userId);
+                        new PostDetailActivity.PostActivityTask().execute(params);
+                    }
                 }
             }
         });

@@ -82,8 +82,13 @@ public class SearchFriendActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String keywords = mSearchKeywordET.getText().toString();
-                String params = String.format("{ \"keywords\": \"%s\", \"userId\": %s }", keywords, userId);
-                new GetSearchFriendResult().execute(params);
+                if (keywords.equals("")) {
+                    Toast.makeText(SearchFriendActivity.this, "查询内容不能为空", Toast.LENGTH_SHORT).show();;
+                } else {
+                    String params = String.format("{ \"keywords\": \"%s\", \"userId\": %s }", keywords, userId);
+                    new GetSearchFriendResult().execute(params);
+                }
+
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

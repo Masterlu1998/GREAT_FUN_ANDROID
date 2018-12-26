@@ -75,7 +75,7 @@ public class PersonDetailFragment extends Fragment {
                 userContent = "未登录";
                 userName = "未登录";
                 Intent intent = new Intent(getActivity(), AppLoginActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
                 SharedPreferences sharedPreferences = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
                 editor.putInt("userId", userId);
