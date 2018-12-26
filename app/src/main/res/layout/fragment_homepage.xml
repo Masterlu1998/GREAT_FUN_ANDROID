@@ -16,12 +16,10 @@
         <android.support.v4.view.ViewPager
             android:id="@+id/banner_view_pager"
             android:layout_width="match_parent"
-            android:layout_height="190dp"
+            android:layout_height="183dp"
             android:layout_marginStart="60dp"
-            android:layout_marginLeft="60dp"
             android:layout_marginTop="35dp"
             android:layout_marginEnd="60dp"
-            android:layout_marginRight="60dp"
             android:clipChildren="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
