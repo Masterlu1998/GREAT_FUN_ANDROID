@@ -81,7 +81,7 @@ public class PostDetailActivity extends AppCompatActivity {
                 } else {
                     // TODO: 图片暂时写死，不知道咋办
                     if (imgUrl == null) {
-                        imgUrl = "http://116.62.156.102:7080/images/activity_img_c.jpeg";
+                        imgUrl = "http://116.62.156.102:7080/images/default_img.png";
                     }
                     if (modifiedFlag == 1) {
                         // 修改活动
